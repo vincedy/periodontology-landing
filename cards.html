@@ -8,20 +8,25 @@
 :root{--teal:#2f6f7d;--teal-d:#255a66;--ink:#233035;--soft:#f7f3ea;--line:#e3ded5;--muted:#6d6860;}
 *{box-sizing:border-box;}
 body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--ink);background:var(--soft);line-height:1.5;}
-.wrap{max-width:680px;margin:0 auto;padding:22px 18px 40px;}
+.wrap{max-width:560px;margin:0 auto;padding:22px 18px 40px;}
 .eyebrow{color:var(--teal);font-weight:800;letter-spacing:.13em;text-transform:uppercase;font-size:12px;}
-h1{font-size:clamp(26px,4vw,36px);color:var(--teal);margin:6px 0 4px;}
+h1{font-size:clamp(24px,4vw,34px);color:var(--teal);margin:6px 0 4px;}
 .lead{color:#3a4146;margin:0 0 18px;}
 .bar{height:8px;background:#e7e1d6;border-radius:99px;overflow:hidden;}
-.bar-fill{height:100%;width:0;background:var(--teal);transition:width .25s ease;}
-.counter{font-size:13px;color:var(--muted);margin:8px 0 14px;text-align:center;font-weight:600;}
-.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:12px;box-shadow:0 10px 30px rgba(32,49,53,.10);cursor:pointer;user-select:none;}
-.card img{width:100%;max-height:64vh;object-fit:contain;display:block;border-radius:12px;}
-.hint{text-align:center;color:var(--muted);font-size:13px;margin:10px 0 4px;}
+.bar-fill{height:100%;width:0;background:var(--teal);transition:width .35s ease;}
+.counter{font-size:13px;color:var(--muted);margin:8px 0 16px;text-align:center;font-weight:600;}
+.scene{perspective:1600px;width:100%;max-width:420px;margin:0 auto;aspect-ratio:1240/1748;transition:opacity .22s ease, transform .22s ease;}
+.scene.switching{opacity:0;transform:translateY(10px);}
+.flip{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.7,.2,1);cursor:pointer;}
+.flip.flipped{transform:rotateY(180deg);}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 12px 34px rgba(32,49,53,.12);overflow:hidden;}
+.face img{width:100%;height:100%;object-fit:contain;display:block;}
+.face.back{transform:rotateY(180deg);}
+.hint{text-align:center;color:var(--muted);font-size:13px;margin:12px 0 2px;transition:opacity .2s;}
 .btnrow{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px;}
 .btn{flex:1;min-width:150px;text-align:center;padding:13px 16px;border-radius:13px;border:1px solid var(--teal);background:#fff;color:var(--teal);font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;}
 .btn.primary{background:var(--teal);color:#fff;border-color:var(--teal);}
-.btn.primary:hover{background:var(--teal-d);}
+.btn.primary:active{transform:translateY(1px);}
 .tools{text-align:center;margin-top:14px;}
 .link{background:none;border:none;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:13px;}
 .endbox{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px 22px;text-align:center;box-shadow:0 10px 30px rgba(32,49,53,.10);}
@@ -40,7 +45,12 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:26px;}
   <div class="counter" id="counter"></div>
 
   <section id="cardview">
-    <div class="card" id="card"><img id="cardimg" alt="flashcard"></div>
+    <div class="scene" id="scene">
+      <div class="flip" id="flip">
+        <div class="face front"><img id="imgFront" alt="flashcard question"></div>
+        <div class="face back"><img id="imgBack" alt="flashcard answer"></div>
+      </div>
+    </div>
     <div class="hint" id="hint">Tap the card to reveal the answer</div>
     <div class="btnrow">
       <button class="btn" id="flipbtn">Reveal answer</button>
@@ -65,34 +75,42 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:26px;}
 
 <script>
 const CARDS = [{"code": "PER-ONE-001", "title": "Periodontitis", "front": "cards/PER-ONE-001_FRONT_EN.png", "back": "cards/PER-ONE-001_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-002", "title": "Periodontal Health", "front": "cards/PER-ONE-002_FRONT_EN.png", "back": "cards/PER-ONE-002_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-003", "title": "Plaque-Induced Gingivitis — Answe", "front": "cards/PER-ONE-003_FRONT_EN.png", "back": "cards/PER-ONE-003_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-004", "title": "Non-Plagque-Induced", "front": "cards/PER-ONE-004_FRONT_EN.png", "back": "cards/PER-ONE-004_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-005", "title": "Clinical Attachment Loss", "front": "cards/PER-ONE-005_FRONT_EN.png", "back": "cards/PER-ONE-005_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-006", "title": "Probing Denonth", "front": "cards/PER-ONE-006_FRONT_EN.png", "back": "cards/PER-ONE-006_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-007", "title": "Bleeding on Probing", "front": "cards/PER-ONE-007_FRONT_EN.png", "back": "cards/PER-ONE-007_BACK_EN.png", "tier": "yellow"}, {"code": "PER-ONE-008", "title": "Radiographic Bone Loss", "front": "cards/PER-ONE-008_FRONT_EN.png", "back": "cards/PER-ONE-008_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-009", "title": "Periodontal Probes", "front": "cards/PER-ONE-009_FRONT_EN.png", "back": "cards/PER-ONE-009_BACK_EN.png", "tier": "yellow"}, {"code": "PER-ONE-010", "title": "Gingivitis vs Periodontitis", "front": "cards/PER-ONE-010_FRONT_EN.png", "back": "cards/PER-ONE-010_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-011", "title": "Concept of Stage", "front": "cards/PER-ONE-011_FRONT_EN.png", "back": "cards/PER-ONE-011_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-012", "title": "Stage | Periodontitis", "front": "cards/PER-ONE-012_FRONT_EN.png", "back": "cards/PER-ONE-012_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-013", "title": "Stage II Periodontitis", "front": "cards/PER-ONE-013_FRONT_EN.png", "back": "cards/PER-ONE-013_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-014", "title": "Stage Ill Periodontitis", "front": "cards/PER-ONE-014_FRONT_EN.png", "back": "cards/PER-ONE-014_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-015", "title": "Stage IV Periodontitis", "front": "cards/PER-ONE-015_FRONT_EN.png", "back": "cards/PER-ONE-015_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-016", "title": "Severity Criteria", "front": "cards/PER-ONE-016_FRONT_EN.png", "back": "cards/PER-ONE-016_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-017", "title": "Complexity Factors", "front": "cards/PER-ONE-017_FRONT_EN.png", "back": "cards/PER-ONE-017_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-018", "title": "Extent & Distribution", "front": "cards/PER-ONE-018_FRONT_EN.png", "back": "cards/PER-ONE-018_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-019", "title": "Tooth Loss due to Periodontitis", "front": "cards/PER-ONE-019_FRONT_EN.png", "back": "cards/PER-ONE-019_BACK_EN.png", "tier": "green"}, {"code": "PER-ONE-020", "title": "Common Staging Errors", "front": "cards/PER-ONE-020_FRONT_EN.png", "back": "cards/PER-ONE-020_BACK_EN.png", "tier": "green"}];
-const KEY = 'perio_demo_v1';
-const el = id => document.getElementById(id);
-let side = 'front', state;
+const KEY='perio_demo_v1';
+const el=id=>document.getElementById(id);
+let state;
 
 function shuffle(n){const a=[...Array(n).keys()];for(let i=n-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(s&&Array.isArray(s.order)&&s.order.length===CARDS.length&&typeof s.pos==='number')return s;}catch(e){}return {order:shuffle(CARDS.length),pos:0};}
 function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
 function bar(){el('fill').style.width=(Math.min(state.pos,CARDS.length)/CARDS.length*100)+'%';}
 
+function paint(){
+  const c=CARDS[state.order[state.pos]];
+  el('imgFront').src=c.front;el('imgFront').alt=c.title+' (question)';
+  el('imgBack').src=c.back;el('imgBack').alt=c.title+' (answer)';
+  el('flip').classList.remove('flipped');
+  el('flipbtn').textContent='Reveal answer';
+  el('hint').style.opacity='1';
+  el('counter').textContent='Card '+(state.pos+1)+' of '+CARDS.length;
+}
 function render(){
   bar();
   if(state.pos>=CARDS.length){el('cardview').classList.add('hidden');el('endview').classList.remove('hidden');el('counter').textContent='Done';return;}
   el('cardview').classList.remove('hidden');el('endview').classList.add('hidden');
-  const c=CARDS[state.order[state.pos]];side='front';
-  el('cardimg').src=c.front;el('cardimg').alt=c.title+' (question)';
-  el('flipbtn').textContent='Reveal answer';
-  el('hint').style.visibility='visible';
-  el('counter').textContent='Card '+(state.pos+1)+' of '+CARDS.length;
+  paint();
 }
 function flip(){
-  const c=CARDS[state.order[state.pos]];
-  if(side==='front'){side='back';el('cardimg').src=c.back;el('cardimg').alt=c.title+' (answer)';el('flipbtn').textContent='Show question';el('hint').style.visibility='hidden';}
-  else{side='front';el('cardimg').src=c.front;el('cardimg').alt=c.title+' (question)';el('flipbtn').textContent='Reveal answer';el('hint').style.visibility='visible';}
+  const f=el('flip');const back=f.classList.toggle('flipped');
+  el('flipbtn').textContent=back?'Show question':'Reveal answer';
+  el('hint').style.opacity=back?'0':'1';
 }
-function next(){state.pos++;save();render();}
+function next(){
+  const sc=el('scene');sc.classList.add('switching');
+  setTimeout(()=>{state.pos++;save();render();sc.classList.remove('switching');},220);
+}
 function restart(){state={order:shuffle(CARDS.length),pos:0};save();render();}
 
-el('card').addEventListener('click',flip);
+el('flip').addEventListener('click',flip);
 el('flipbtn').addEventListener('click',e=>{e.stopPropagation();flip();});
 el('nextbtn').addEventListener('click',next);
 el('restart').addEventListener('click',restart);
