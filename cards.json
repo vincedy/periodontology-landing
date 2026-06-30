@@ -1,0 +1,142 @@
+[
+  {
+    "code": "PER-ONE-001",
+    "title": "Periodontitis",
+    "front": "cards/PER-ONE-001_FRONT_EN.png",
+    "back": "cards/PER-ONE-001_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-002",
+    "title": "Periodontal Health",
+    "front": "cards/PER-ONE-002_FRONT_EN.png",
+    "back": "cards/PER-ONE-002_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-003",
+    "title": "Plaque-Induced Gingivitis — Answe",
+    "front": "cards/PER-ONE-003_FRONT_EN.png",
+    "back": "cards/PER-ONE-003_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-004",
+    "title": "Non-Plagque-Induced",
+    "front": "cards/PER-ONE-004_FRONT_EN.png",
+    "back": "cards/PER-ONE-004_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-005",
+    "title": "Clinical Attachment Loss",
+    "front": "cards/PER-ONE-005_FRONT_EN.png",
+    "back": "cards/PER-ONE-005_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-006",
+    "title": "Probing Denonth",
+    "front": "cards/PER-ONE-006_FRONT_EN.png",
+    "back": "cards/PER-ONE-006_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-007",
+    "title": "Bleeding on Probing",
+    "front": "cards/PER-ONE-007_FRONT_EN.png",
+    "back": "cards/PER-ONE-007_BACK_EN.png",
+    "tier": "yellow"
+  },
+  {
+    "code": "PER-ONE-008",
+    "title": "Radiographic Bone Loss",
+    "front": "cards/PER-ONE-008_FRONT_EN.png",
+    "back": "cards/PER-ONE-008_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-009",
+    "title": "Periodontal Probes",
+    "front": "cards/PER-ONE-009_FRONT_EN.png",
+    "back": "cards/PER-ONE-009_BACK_EN.png",
+    "tier": "yellow"
+  },
+  {
+    "code": "PER-ONE-010",
+    "title": "Gingivitis vs Periodontitis",
+    "front": "cards/PER-ONE-010_FRONT_EN.png",
+    "back": "cards/PER-ONE-010_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-011",
+    "title": "Concept of Stage",
+    "front": "cards/PER-ONE-011_FRONT_EN.png",
+    "back": "cards/PER-ONE-011_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-012",
+    "title": "Stage | Periodontitis",
+    "front": "cards/PER-ONE-012_FRONT_EN.png",
+    "back": "cards/PER-ONE-012_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-013",
+    "title": "Stage II Periodontitis",
+    "front": "cards/PER-ONE-013_FRONT_EN.png",
+    "back": "cards/PER-ONE-013_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-014",
+    "title": "Stage Ill Periodontitis",
+    "front": "cards/PER-ONE-014_FRONT_EN.png",
+    "back": "cards/PER-ONE-014_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-015",
+    "title": "Stage IV Periodontitis",
+    "front": "cards/PER-ONE-015_FRONT_EN.png",
+    "back": "cards/PER-ONE-015_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-016",
+    "title": "Severity Criteria",
+    "front": "cards/PER-ONE-016_FRONT_EN.png",
+    "back": "cards/PER-ONE-016_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-017",
+    "title": "Complexity Factors",
+    "front": "cards/PER-ONE-017_FRONT_EN.png",
+    "back": "cards/PER-ONE-017_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-018",
+    "title": "Extent & Distribution",
+    "front": "cards/PER-ONE-018_FRONT_EN.png",
+    "back": "cards/PER-ONE-018_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-019",
+    "title": "Tooth Loss due to Periodontitis",
+    "front": "cards/PER-ONE-019_FRONT_EN.png",
+    "back": "cards/PER-ONE-019_BACK_EN.png",
+    "tier": "green"
+  },
+  {
+    "code": "PER-ONE-020",
+    "title": "Common Staging Errors",
+    "front": "cards/PER-ONE-020_FRONT_EN.png",
+    "back": "cards/PER-ONE-020_BACK_EN.png",
+    "tier": "green"
+  }
+]
